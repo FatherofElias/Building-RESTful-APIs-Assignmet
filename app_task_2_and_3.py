@@ -139,7 +139,7 @@ def delete_member(id):
     else:
         return jsonify({"error": "Failed to connect to the database"}), 500
 
-
+# For Task 3
 
 @app.route('/workouts', methods=['POST'])
 def add_workout_session():
