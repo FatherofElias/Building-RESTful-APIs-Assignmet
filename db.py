@@ -1,3 +1,5 @@
+# For Task 1 to handle database connection
+
 from mysql.connector import connect, Error
 from config import Config
 

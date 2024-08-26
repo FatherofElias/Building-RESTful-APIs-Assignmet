@@ -1,3 +1,5 @@
+# Task 1 Flask application basic route
+
 from flask import Flask
 from db import get_db_connection
 
