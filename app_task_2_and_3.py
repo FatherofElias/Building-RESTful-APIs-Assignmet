@@ -25,8 +25,8 @@ members_schema = MemberSchema(many=True)
 class WorkoutSessionSchema(Schema):
     session_id = fields.Int(required=True)
     member_id = fields.Int(required=True)
-    session_date = fields.Str(required=True)  # Change to Str to match the format returned by MySQL
-    session_time = fields.Str(required=True)  # Change to Str to match the format returned by MySQL
+    session_date = fields.Str(required=True)  
+    session_time = fields.Str(required=True) 
     activity = fields.Str(required=True)
 
 workout_session_schema = WorkoutSessionSchema()
@@ -217,7 +217,7 @@ def get_all_workout_sessions():
             cursor = conn.cursor()
             cursor.execute("SELECT session_id, member_id, session_date, session_time, activity FROM WorkoutSessions")
             sessions = cursor.fetchall()
-            print(sessions)  # Debugging print statement
+            print(sessions)  
             result = workout_sessions_schema.dump([{
                 "session_id": session[0],
                 "member_id": session[1],
@@ -227,7 +227,7 @@ def get_all_workout_sessions():
             } for session in sessions])
             return jsonify(result), 200
         except Error as e:
-            print(f"Error: {e}")  # Debugging print statement
+            print(f"Error: {e}")  
             return jsonify({"error": str(e)}), 400
         finally:
             cursor.close()
@@ -245,7 +245,6 @@ def get_workout_sessions_for_member(member_id):
             cursor.execute("SELECT session_id, member_id, session_date, session_time, activity FROM WorkoutSessions WHERE member_id = %s", (member_id,))
             sessions = cursor.fetchall()
 
-            # Ensure the sessions are correctly formatted
             formatted_sessions = [{
                 "session_id": session[0],
                 "member_id": session[1],
